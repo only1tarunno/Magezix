@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Button from "../../components/shared/Button";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   const axiosPublic = useAxiosPublic();
@@ -13,8 +14,8 @@ const Banner = () => {
       try {
         const res = await axiosPublic.get(`/trending`);
         const fetchedData = res.data;
-        const { title, image, description } = fetchedData[0];
-        const bannerInfo = { title, image, description };
+        const { title, image, description, _id } = fetchedData[0];
+        const bannerInfo = { title, image, description, _id };
         setCurrentinfo(bannerInfo);
         // Set other states or perform operations with the fetched data
       } catch (error) {
@@ -40,7 +41,9 @@ const Banner = () => {
             {curentinfo?.description}
           </p>
           <div>
-            <Button text={"Read More"}></Button>
+            <Link to={`${curentinfo?._id}`}>
+              <Button text={"Read More"}></Button>
+            </Link>
           </div>
         </div>
       </div>

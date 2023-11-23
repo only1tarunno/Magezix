@@ -36,13 +36,34 @@ const TrendingArticle = () => {
           ></SharedSectionTitle>
         </div>
         <Swiper
-          slidesPerView={4}
           spaceBetween={30}
           centeredSlides={false}
           pagination={{
             clickable: true,
           }}
           modules={[Pagination]}
+          breakpoints={{
+            "@0.00": {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            "@0.75": {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            "@1.00": {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            "@1.50": {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            "@2.00": {
+              slidesPerView: 4,
+              spaceBetween: 20,
+            },
+          }}
           className="mySwiper  my-12"
         >
           {trendingArticles.map((article) => (
