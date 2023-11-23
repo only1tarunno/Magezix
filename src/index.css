@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: "Jost", sans-serif;
+}
+
+.navbar a {
+  border-radius: 3px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.menu-horizontal > li .active,
+.dropdown-content > li .active {
+  background-color: #ff184e !important;
+  color: #fff !important;
+}
+
+.navbar a:hover {
+  background-color: #ff184e !important;
+  color: white !important;
+  outline: none;
+  outline-offset: 0;
+}
+
+/*red: #ff184e */
+/* #000000 */
+/* details : #4c5161 */
