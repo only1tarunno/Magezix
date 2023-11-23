@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-import Button from "../../components/Button";
+import Button from "../../components/shared/Button";
 
 const Banner = () => {
   const axiosPublic = useAxiosPublic();
@@ -40,7 +40,7 @@ const Banner = () => {
             {curentinfo?.description}
           </p>
           <div>
-            <Button></Button>
+            <Button text={"Read More"}></Button>
           </div>
         </div>
       </div>
