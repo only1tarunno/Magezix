@@ -5,6 +5,7 @@ import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import Error404 from "../pages/Error404.jsx/Error404";
 import AllArticle from "../pages/AllArticle/AllArticle";
+import AddArticle from "../pages/AddArticle/AddArticle";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "/addArticles",
+        element: <AddArticle></AddArticle>,
       },
       {
         path: "/allArticles",

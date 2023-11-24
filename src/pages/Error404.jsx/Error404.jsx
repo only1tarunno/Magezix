@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Button from "../../components/shared/Button";
 import Navbar from "../../components/Navbar/Navbar";
-import Footer from "../Home/Footer";
+import Footer from "../../components/Footer/Footer";
 import Container from "../../components/shared/Container";
 
 const Error404 = () => {
