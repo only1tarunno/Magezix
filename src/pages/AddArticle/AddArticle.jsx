@@ -137,7 +137,7 @@ const AddArticle = () => {
 
             <button
               type="submit"
-              className="btn bg-rose-500 w-full rounded-md py-3 text-white"
+              className="btn w-full bg-[#ff184e] border-[#ff184e] rounded  hover:bg-[#4c5161] hover:border-[#4c5161] text-white font-medium"
             >
               Add Article
             </button>
