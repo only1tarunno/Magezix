@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import SocialLogin from "../../components/shared/SocialLogin";
@@ -8,8 +8,10 @@ import Swal from "sweetalert2";
 
 const Login = () => {
   const { login, loading } = useAuth();
-  const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location?.state?.from?.pathname || "/";
 
   const onSubmit = async (data) => {
     login(data?.email, data?.password).then(() => {
@@ -19,6 +21,7 @@ const Login = () => {
         showConfirmButton: false,
         timer: 1500,
       });
+      navigate(from, { replace: true });
     });
   };
 

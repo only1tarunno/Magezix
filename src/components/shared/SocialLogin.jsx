@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { FcGoogle } from "react-icons/fc";
@@ -7,7 +7,9 @@ import Swal from "sweetalert2";
 const SocialLogin = () => {
   const { googleSingin } = useAuth();
   const axiosPublic = useAxiosPublic();
+  const location = useLocation();
   const navigate = useNavigate();
+  const from = location?.state?.from?.pathname || "/";
 
   const handleGoogleLogin = () => {
     googleSingin()
@@ -28,10 +30,11 @@ const SocialLogin = () => {
           role: "user",
         };
         console.log(userInfo);
+        navigate(from, { replace: true });
 
         // axiosPublic.post("/users", userInfo).then((res) => {
         //   console.log(res.data);
-        //   navigate("/");
+        //
         // });
       })
       .catch(() => {
