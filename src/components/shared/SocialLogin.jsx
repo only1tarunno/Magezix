@@ -26,16 +26,14 @@ const SocialLogin = () => {
           name: result.user?.displayName,
           email: result.user?.email,
           image: result.user?.photoURL,
+          lastLogin: result.user.metadata.lastSignInTime,
           premiumTaken: false,
           role: "user",
         };
-        console.log(userInfo);
         navigate(from, { replace: true });
-
-        // axiosPublic.post("/users", userInfo).then((res) => {
-        //   console.log(res.data);
-        //
-        // });
+        axiosPublic.post("/users", userInfo).then((res) => {
+          console.log(res.data);
+        });
       })
       .catch(() => {
         Swal.fire({

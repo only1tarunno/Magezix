@@ -42,34 +42,31 @@ const Register = () => {
       return;
     }
 
-    createUser(data?.email, pass).then(
-      (result) => {
-        console.log(result.user.metadata.lastSignInTime);
-        updateUserProfile(data?.name, data?.photo).then(() => {
-          // create user in data base
-          const userInfo = {
-            name: data?.name,
-            email: data?.email,
-            image: data?.photo,
-            premiumTaken: false,
-            role: "user",
-          };
-          console.log(userInfo);
+    createUser(data?.email, pass).then((result) => {
+      console.log();
+      updateUserProfile(data?.name, data?.photo).then(() => {
+        // create user in data base
+        const userInfo = {
+          name: data?.name,
+          email: data?.email,
+          image: data?.photo,
+          premiumTaken: false,
+          lastLogin: result.user.metadata.lastSignInTime,
+          role: "user",
+        };
+        axiosPublic.post("/users", userInfo).then((res) => {
+          console.log(res.data);
+          Swal.fire({
+            icon: "success",
+            title: "User created successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          reset();
+          navigate(from, { replace: true });
         });
-      }
-
-      // axiosPublic.post("/users", userInfo).then((res) => {
-      //   console.log(res.data);
-      //   Swal.fire({
-      //     icon: "success",
-      //     title: 'User created successfully',
-      //   showConfirmButton: false,
-      //   timer: 1500
-      //   });
-      //   reset();
-      //    navigate(from, { replace: true });
-      // });
-    );
+      });
+    });
   };
 
   return (

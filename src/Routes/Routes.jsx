@@ -49,15 +49,6 @@ const router = createBrowserRouter([
     path: "/register",
     element: <Register></Register>,
   },
-
-  //   {
-  //     path: "/login",
-  //     element: <LogIn></LogIn>,
-  //   },
-  //   {
-  //     path: "/register",
-  //     element: <Register></Register>,
-  //   },
 ]);
 
 export default router;
