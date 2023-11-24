@@ -1,60 +1,43 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import Button from "../shared/Button";
 import Container from "../shared/Container";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
+  const { user, logOut } = useAuth();
+
+  const navigate = useNavigate();
   const links = (
     <>
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink
-          to="/addArticles
-"
-        >
-          Add Articles
-        </NavLink>
+        <NavLink to="/addArticles">Add Articles</NavLink>
       </li>
       <li>
         <NavLink to="/allArticles">All Articles</NavLink>
       </li>
       <li>
-        <NavLink
-          to="/subscription
-"
-        >
-          Subscription
-        </NavLink>
+        <NavLink to="/subscription">Subscription</NavLink>
       </li>
       <li>
-        <NavLink
-          to="/dashboard
-"
-        >
-          Dashboard
-        </NavLink>
+        <NavLink to="/dashboard">Dashboard</NavLink>
       </li>
       <li>
-        <NavLink
-          to="/myArticles
-
-"
-        >
-          My Articles
-        </NavLink>
+        <NavLink to="/myArticles">My Articles</NavLink>
       </li>
       <li>
-        <NavLink
-          to="/premiumArticles
-"
-        >
-          Premium Articles
-        </NavLink>
+        <NavLink to="/premiumArticles">Premium Articles</NavLink>
       </li>
     </>
   );
+
+  const handleLogOut = () => {
+    logOut().then(navigate("/")).catch();
+  };
+
   return (
     <div className="fixed  w-full z-50 bg-white ">
       <Container>
@@ -93,7 +76,28 @@ const Navbar = () => {
               <ul className="menu menu-horizontal px-1">{links}</ul>
             </div>
             <div className="navbar-end">
-              <Button text={"Login/Register"}></Button>
+              {user ? (
+                <div className="flex flex-col lg:flex-row items-center gap-2">
+                  <h2 className="text-white text-xl font-bold">
+                    {user.displayName ? user.displayName : "User"}
+                  </h2>
+                  <img
+                    className="w-10 rounded-[50%] h-10 object-cover"
+                    src={user?.photoURL}
+                    alt=""
+                  />
+                  <button
+                    onClick={handleLogOut}
+                    className="btn bg-[#ff184e] border-[#ff184e] rounded  hover:bg-[#4c5161] hover:border-[#4c5161] text-white font-medium uppercase"
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <Link to="/login">
+                  <Button text={"Login/Register"}></Button>
+                </Link>
+              )}
             </div>
           </div>
         </div>

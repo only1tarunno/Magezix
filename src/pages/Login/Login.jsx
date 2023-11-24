@@ -1,28 +1,35 @@
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
 import SocialLogin from "../../components/shared/SocialLogin";
 import { TbFidgetSpinner } from "react-icons/tb";
 import Swal from "sweetalert2";
 
 const Login = () => {
   const { login, loading } = useAuth();
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
   const location = useLocation();
   const navigate = useNavigate();
   const from = location?.state?.from?.pathname || "/";
 
   const onSubmit = async (data) => {
-    login(data?.email, data?.password).then(() => {
-      Swal.fire({
-        icon: "success",
-        title: "User log in sucess",
-        showConfirmButton: false,
-        timer: 1500,
+    login(data?.email, data?.password)
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "User log in sucess",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(from, { replace: true });
+      })
+      .catch(() => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops",
+          text: "Invalid username or password",
+        });
       });
-      navigate(from, { replace: true });
-    });
   };
 
   return (
@@ -30,7 +37,7 @@ const Login = () => {
       <div className="flex justify-center items-center min-h-screen">
         <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
           <div className="mb-8 text-center">
-            <h1 className="my-3 text-4xl font-bold">Sign Ip</h1>
+            <h1 className="my-3 text-4xl font-bold">Sign In</h1>
             <p className="text-sm text-gray-400">Welcome to MageZix</p>
           </div>
           <form

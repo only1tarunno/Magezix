@@ -1,6 +1,7 @@
 import about from "../../assets/aboutUs.jpg";
 import Button from "../../components/shared/Button";
 import Container from "../../components/shared/Container";
+import { Typewriter } from "react-simple-typewriter";
 
 const AboutUs = () => {
   return (
@@ -13,7 +14,19 @@ const AboutUs = () => {
           <div className="w-[48%]">
             <h3 className="text-[#ff184e] font-medium text-xl">About Us</h3>
             <h2 className="text-4xl max-w-xl font-bold py-4 capitalize">
-              More Than 25+ Years We Provide True News
+              More Than 25+ Years We Provide True{" "}
+              <span style={{ color: "#ff184e", fontWeight: "bold" }}>
+                <Typewriter
+                  words={["Stories", "Reports", "News"]}
+                  loop={5}
+                  cursor
+                  cursorStyle="_"
+                  typeSpeed={70}
+                  cursorColor={"red"}
+                  deleteSpeed={50}
+                  delaySpeed={1000}
+                />
+              </span>
             </h2>
             <p className="max-w-xl">
               We&lsquo;re dedicated to delivering insightful, timely, and
