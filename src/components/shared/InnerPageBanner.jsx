@@ -10,8 +10,10 @@ const InnerPageBanner = ({ title, subTitle }) => {
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),url(${img})`,
       }}
     >
-      <div className=" z-30 text-center space-y-2">
-        <h2 className="font-bold text-4xl lg:text-7xl text-white ">{title}</h2>
+      <div className=" z-30 text-center space-y-4">
+        <h2 className="font-bold text-4xl lg:text-5xl max-w-3xl text-white ">
+          {title}
+        </h2>
         <p className="text-white font-medium text-xl">
           <Link to="/">Home</Link> | {subTitle}
         </p>

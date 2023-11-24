@@ -6,6 +6,7 @@ import Login from "../pages/Login/Login";
 import Error404 from "../pages/Error404.jsx/Error404";
 import AllArticle from "../pages/AllArticle/AllArticle";
 import AddArticle from "../pages/AddArticle/AddArticle";
+import ArticleDetails from "../pages/ArticleDetails/ArticleDetails";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/allArticles",
         element: <AllArticle></AllArticle>,
+      },
+      {
+        path: "/allArticles/:id",
+        element: <ArticleDetails></ArticleDetails>,
       },
     ],
   },

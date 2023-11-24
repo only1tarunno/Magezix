@@ -70,7 +70,7 @@ const TrendingArticle = () => {
             <SwiperSlide key={article._id}>
               <div
                 className="cursor-pointer"
-                onClick={() => navigate(article._id)}
+                onClick={() => navigate(`/allArticles/${article._id}`)}
               >
                 <img src={article?.image} alt="" />
                 <h3 className="text-center text-xl font-bold  text-[#4c5161]">
