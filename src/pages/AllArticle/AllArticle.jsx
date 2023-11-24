@@ -1,16 +1,19 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from "../../components/shared/Loader";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Container from "../../components/shared/Container";
 import ArticleCard from "./ArticleCard";
+import InnerPageBanner from "../../components/shared/InnerPageBanner";
+import Lottie from "lottie-web";
 
 const AllArticle = () => {
   const [search, setSearch] = useState("");
   const axiosPublic = useAxiosPublic();
   const [isSearching, setIsSearching] = useState(false);
   const [tags, setTags] = useState("");
+  const [lottieload, setLootieLoad] = useState(false);
 
   const { data, fetchNextPage, hasNextPage, isLoading, refetch } =
     useInfiniteQuery({
@@ -50,24 +53,42 @@ const AllArticle = () => {
 
   useEffect(() => {
     setIsSearching(true);
+    setLootieLoad(true);
     refetch().then(() => {
       setIsSearching(false);
+      setLootieLoad(false);
     });
   }, [search, tags, refetch]);
+
+  // for lottie animation
+  const animation = useRef(null);
+  useEffect(() => {
+    Lottie.loadAnimation({
+      container: animation.current,
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      path: "/no-data.json",
+    });
+  }, [lottieload]);
 
   if (isLoading) {
     return <Loader></Loader>;
   }
 
   return (
-    <div className="pt-56">
+    <>
+      <InnerPageBanner
+        title="All Articles"
+        subTitle="Articles"
+      ></InnerPageBanner>
       <Container>
-        <div className="flex items-center justify-between flex-col lg:flex-row">
-          <div>
+        <div className="flex items-center justify-between flex-col lg:flex-row mt-10 gap-5">
+          <div className="w-full md:max-w-xs">
             <select
               value={tags}
               onChange={handleTags}
-              className="select select-bordered w-full max-w-xs focus:outline-none"
+              className="select select-bordered w-full md:max-w-xs focus:outline-none"
             >
               <option value={""}>Filter By Tags</option>
               <option>technology</option>
@@ -81,16 +102,17 @@ const AllArticle = () => {
               <option>empowerment</option>
             </select>
           </div>
-          <form onSubmit={handlesearch} className=" flex justify-center">
-            <div className="join justify-center">
-              <div>
-                <div>
-                  <input
-                    name="search"
-                    className="input input-bordered join-item focus:outline-none"
-                    placeholder="Search"
-                  />
-                </div>
+          <form
+            onSubmit={handlesearch}
+            className="w-full md:max-w-xs flex justify-center"
+          >
+            <div className="join w-full md:max-w-xs justify-center">
+              <div className="w-full">
+                <input
+                  name="search"
+                  className="input input-bordered w-full join-item focus:outline-none"
+                  placeholder="Search"
+                />
               </div>
               <div className="indicator">
                 <button className="btn join-item hover:bg-[#ff184e] hover:border-[#ff184e] hover:text-white">
@@ -111,18 +133,34 @@ const AllArticle = () => {
             loading={<Loader></Loader>}
           >
             <div className="grid lg:grid-cols-2 grid-cols-1 gap-8 my-10">
-              {articles &&
+              {articles.length > 0 ? (
                 articles.map((article, index) => (
                   <ArticleCard
                     key={`${article._id}_${index}`}
                     article={article}
                   ></ArticleCard>
-                ))}
+                ))
+              ) : (
+                <div className="pb-14  lg:col-span-2">
+                  {!lottieload && (
+                    <>
+                      <div className="w-80 mx-auto" ref={animation}></div>
+                      <h2 className="text-center font-bold text-4xl">
+                        No Service Found
+                      </h2>
+                      <p className="text-xl md:text-2xl font-medium text-center">
+                        Whoops...This information in not available for this
+                        moment
+                      </p>
+                    </>
+                  )}
+                </div>
+              )}
             </div>
           </InfiniteScroll>
         )}
       </Container>
-    </div>
+    </>
   );
 };
 
