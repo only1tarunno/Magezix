@@ -25,6 +25,9 @@ body {
   outline-offset: 0;
 }
 
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+  background-color: #ff184e !important;
+}
 /*red: #ff184e */
 /* #000000 */
 /* details : #4c5161 */
