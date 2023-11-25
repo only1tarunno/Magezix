@@ -15,7 +15,7 @@ const AllArticle = () => {
   const [tags, setTags] = useState("");
   const [lottieload, setLootieLoad] = useState(false);
   const axiosPublic = useAxiosPublic();
-  const [isUserPremium, isUserPremiumloading] = usePremium();
+  const [isUserPremium] = usePremium();
 
   const { data, fetchNextPage, hasNextPage, isLoading, refetch } =
     useInfiniteQuery({
@@ -74,7 +74,7 @@ const AllArticle = () => {
     });
   }, [lottieload]);
 
-  if (isLoading || isUserPremiumloading === "pending") {
+  if (isLoading) {
     return <Loader></Loader>;
   }
 

@@ -1,25 +1,31 @@
 import { useQuery } from "@tanstack/react-query";
 import InnerPageBanner from "../../components/shared/InnerPageBanner";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Loader from "../../components/shared/Loader";
 import usePremium from "../../hooks/usePremium";
 import ArticleCard from "../AllArticle/ArticleCard";
 import Container from "../../components/shared/Container";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useNavigate } from "react-router-dom";
 
 const PremiumArticles = () => {
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const [isUserPremium, isUserPremiumloading] = usePremium();
+  const navigate = useNavigate();
 
   const { data: premiumAricles, status } = useQuery({
     queryKey: ["premiumAriclesPage"],
     queryFn: async () => {
-      const res = await axiosPublic.get("/premiumArticles");
+      const res = await axiosSecure.get("/premiumArticles");
       return res.data;
     },
   });
 
   if (status === "pending" || isUserPremiumloading === "pending") {
     return <Loader></Loader>;
+  }
+
+  if (!isUserPremium?.premiumTaken) {
+    return navigate("/");
   }
 
   return (

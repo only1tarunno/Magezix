@@ -11,6 +11,8 @@ import PvtRoute from "./PvtRoute";
 import Subscription from "../pages/Subscription/Subscription";
 import Payment from "../pages/Payment/Payment";
 import PremiumArticles from "../pages/PremiumArticles/PremiumArticles";
+import MyProfile from "../pages/MyProfile/MyProfile";
+import Updateprofile from "../pages/MyProfile/Updateprofile";
 
 const router = createBrowserRouter([
   {
@@ -60,7 +62,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/premiumArticles",
-        element: <PremiumArticles></PremiumArticles>,
+        element: (
+          <PvtRoute>
+            <PremiumArticles></PremiumArticles>
+          </PvtRoute>
+        ),
+      },
+      {
+        path: "/myProfile",
+        element: (
+          <PvtRoute>
+            <MyProfile></MyProfile>
+          </PvtRoute>
+        ),
+      },
+      {
+        path: "/updateProfile",
+        element: (
+          <PvtRoute>
+            <Updateprofile></Updateprofile>
+          </PvtRoute>
+        ),
       },
     ],
   },
