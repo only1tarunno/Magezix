@@ -15,7 +15,7 @@ const Price = () => {
             <div className="flex items-center justify-between">
               <h3 className="font-bold text-2xl">1 Minute Offer</h3>
               <div className="text-right">
-                <h4 className="font-bold text-lg">$0.99</h4>
+                <h4 className="font-bold text-lg">$1.99</h4>
                 <p className="font-semibold text-base uppercase">1 Minute</p>
               </div>
             </div>
@@ -54,7 +54,7 @@ const Price = () => {
             <div className="flex items-center justify-between">
               <h3 className="font-bold text-2xl">5 Days Offer</h3>
               <div className="text-right">
-                <h4 className="font-bold text-lg">$4.99</h4>
+                <h4 className="font-bold text-lg">$14.99</h4>
                 <p className="font-semibold text-base uppercase">5 days</p>
               </div>
             </div>
@@ -99,7 +99,7 @@ const Price = () => {
             <div className="flex items-center justify-between">
               <h3 className="font-bold text-2xl"> 10 Days Offer</h3>
               <div className="text-right">
-                <h4 className="font-bold text-lg">$8.99</h4>
+                <h4 className="font-bold text-lg">$24.99</h4>
                 <p className="font-semibold text-base uppercase">10 days</p>
               </div>
             </div>

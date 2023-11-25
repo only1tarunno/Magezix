@@ -8,6 +8,8 @@ import AllArticle from "../pages/AllArticle/AllArticle";
 import AddArticle from "../pages/AddArticle/AddArticle";
 import ArticleDetails from "../pages/ArticleDetails/ArticleDetails";
 import PvtRoute from "./PvtRoute";
+import Subscription from "../pages/Subscription/Subscription";
+import Payment from "../pages/Payment/Payment";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +38,22 @@ const router = createBrowserRouter([
         element: (
           <PvtRoute>
             <ArticleDetails></ArticleDetails>
+          </PvtRoute>
+        ),
+      },
+      {
+        path: "/subscription",
+        element: (
+          <PvtRoute>
+            <Subscription></Subscription>
+          </PvtRoute>
+        ),
+      },
+      {
+        path: "/payment",
+        element: (
+          <PvtRoute>
+            <Payment></Payment>
           </PvtRoute>
         ),
       },

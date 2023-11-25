@@ -42,7 +42,7 @@ const Register = () => {
       return;
     }
 
-    createUser(data?.email, pass).then((result) => {
+    createUser(data?.email, pass).then(() => {
       console.log();
       updateUserProfile(data?.name, data?.photo).then(() => {
         // create user in data base
@@ -51,7 +51,7 @@ const Register = () => {
           email: data?.email,
           image: data?.photo,
           premiumTaken: false,
-          lastLogin: result.user.metadata.lastSignInTime,
+          lastLogin: new Date(),
           role: "user",
         };
         axiosPublic.post("/users", userInfo).then((res) => {
