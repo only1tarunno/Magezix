@@ -6,6 +6,7 @@ import Container from "../../components/shared/Container";
 import { useEffect, useState } from "react";
 import Select from "react-select";
 import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 // imgbb
 const imgbb_key = import.meta.env.VITE_imgbb_key;
@@ -24,6 +25,7 @@ const options = [
 ];
 
 const AddArticle = () => {
+  const { user } = useAuth();
   const {
     register,
     handleSubmit,
@@ -50,14 +52,18 @@ const AddArticle = () => {
     });
     if (res.data.success) {
       // now send the data in server
+
       const articleInfo = {
-        title: data.title,
-        image: res.data.data.display_url,
-        publisher: data.publisher,
-        tags: selectedOption.map(({ value }) => value),
-        description: data.description,
+        title: data?.title,
+        image: res?.data?.data?.display_url,
+        publisher: data?.publisher,
+        tags: selectedOption?.map(({ value }) => value),
+        description: data?.description,
         Approved: "pending",
         premium: "basic",
+        authorEmail: user?.email,
+        authorPhoto: user?.photoURL,
+        postedTime: new Date(),
         views: 0,
       };
 

@@ -21,7 +21,7 @@ const SocialLogin = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        console.log(result.user);
+
         const userInfo = {
           name: result.user?.displayName,
           email: result.user?.email,
@@ -30,9 +30,7 @@ const SocialLogin = () => {
           role: "user",
         };
         navigate(from, { replace: true });
-        axiosPublic.post("/users", userInfo).then((res) => {
-          console.log(res.data);
-        });
+        axiosPublic.post("/users", userInfo).then(() => {});
       })
       .catch(() => {
         Swal.fire({
