@@ -74,7 +74,7 @@ const AllArticle = () => {
     });
   }, [lottieload]);
 
-  if (isLoading && isUserPremiumloading === "pending") {
+  if (isLoading || isUserPremiumloading === "pending") {
     return <Loader></Loader>;
   }
 

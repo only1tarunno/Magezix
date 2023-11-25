@@ -18,7 +18,7 @@ const ArticleCard = ({ article, accessPremium }) => {
 
     if (currentDate.getTime() <= expireDate.getTime()) {
       console.log("user premium");
-      navigate(id);
+      navigate(`/allArticles/${id}`);
     } else {
       console.log("user not premium");
       const userInfo = {

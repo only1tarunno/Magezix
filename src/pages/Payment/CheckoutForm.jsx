@@ -109,13 +109,13 @@ const CheckoutForm = () => {
         });
       }
     }
-    // --------------------------------------------
   };
 
   return (
     <Container>
       <div className="max-w-xl w-full mx-auto py-16">
         <form className="pt-10" onSubmit={handleSubmit}>
+          <h2 className="mb-4 text-xl">Privide your card Info</h2>
           <div className="border p-2 max-w-xl">
             <CardElement
               options={{

@@ -10,6 +10,7 @@ import ArticleDetails from "../pages/ArticleDetails/ArticleDetails";
 import PvtRoute from "./PvtRoute";
 import Subscription from "../pages/Subscription/Subscription";
 import Payment from "../pages/Payment/Payment";
+import PremiumArticles from "../pages/PremiumArticles/PremiumArticles";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
             <Payment></Payment>
           </PvtRoute>
         ),
+      },
+      {
+        path: "/premiumArticles",
+        element: <PremiumArticles></PremiumArticles>,
       },
     ],
   },
