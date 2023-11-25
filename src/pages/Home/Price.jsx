@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Container from "../../components/shared/Container";
 import SharedSectionTitle from "../../components/shared/SharedSectionTitle";
 import { FaCircle } from "react-icons/fa6";
@@ -41,9 +42,11 @@ const Price = () => {
               </li>
             </ul>
             <div>
-              <button className="rounded-full bg-[#f2f2f2] btn w-full capitalize">
-                get 1 Minute Offer
-              </button>
+              <Link to="/subscription">
+                <button className="rounded-full bg-[#f2f2f2] btn w-full capitalize">
+                  get 1 Minute Offer
+                </button>
+              </Link>
             </div>
             <p className="text-center pt-2">
               Our 1 Minute Offer grants instant access to select premium
@@ -86,9 +89,11 @@ const Price = () => {
               </li>
             </ul>
             <div>
-              <button className="rounded-full bg-[#c4da4c] btn w-full capitalize">
-                get 5 Days Offer
-              </button>
+              <Link to="/subscription">
+                <button className="rounded-full bg-[#c4da4c] btn w-full capitalize">
+                  get 5 Days Offer
+                </button>
+              </Link>
             </div>
             <p className="text-center pt-2">
               Experience an extended, seamless ad-free browsing 5-day journey
@@ -137,9 +142,11 @@ const Price = () => {
               </li>
             </ul>
             <div>
-              <button className="rounded-full bg-[#ffd700] btn w-full capitalize">
-                get 10 Days Offer
-              </button>
+              <Link to="/subscription">
+                <button className="rounded-full bg-[#ffd700] btn w-full capitalize">
+                  get 10 Days Offer
+                </button>
+              </Link>
             </div>
             <p className="text-center pt-2">
               Enjoy comprehensive access, personalized insights, and delve

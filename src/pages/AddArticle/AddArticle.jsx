@@ -5,6 +5,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Container from "../../components/shared/Container";
 import { useEffect, useState } from "react";
 import Select from "react-select";
+import Swal from "sweetalert2";
 
 // imgbb
 const imgbb_key = import.meta.env.VITE_imgbb_key;
@@ -23,7 +24,12 @@ const options = [
 ];
 
 const AddArticle = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
   const [publishers, setpublisher] = useState([]);
@@ -55,8 +61,14 @@ const AddArticle = () => {
         views: 0,
       };
 
-      const menuRes = await axiosSecure.post("/allArticles", articleInfo);
-      console.log(menuRes.data);
+      await axiosSecure.post("/allArticles", articleInfo);
+      Swal.fire({
+        icon: "success",
+        title: "Article is Pendind",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      reset();
     }
   };
   return (
@@ -98,11 +110,15 @@ const AddArticle = () => {
               <div className="w-full md:w-[49%]">
                 <label className="label">
                   <span className="label-text">Publisher</span>
+                  {errors.publisher && (
+                    <span className="text-red-600">Select a Publisher</span>
+                  )}
                 </label>
                 <select
                   className="select select-bordered w-full uppercase"
                   required
-                  {...register("publisher")}
+                  defaultValue={"SMASHBANG"}
+                  {...register("publisher", { required: true })}
                 >
                   {publishers.map((publisher) => (
                     <option key={publisher._id} value={publisher.name}>
@@ -112,6 +128,7 @@ const AddArticle = () => {
                 </select>
               </div>
             </div>
+
             <div>
               <Select
                 defaultValue={selectedOption}

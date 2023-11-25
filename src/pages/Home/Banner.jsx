@@ -41,8 +41,8 @@ const Banner = () => {
             {curentinfo?.description}
           </p>
           <div>
-            <Link to={`${curentinfo?._id}`}>
-              <Button text={"Read More"}></Button>
+            <Link to={"/allArticles"}>
+              <Button text={"Explore"}></Button>
             </Link>
           </div>
         </div>

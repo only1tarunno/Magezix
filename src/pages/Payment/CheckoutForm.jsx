@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import Container from "../../components/shared/Container";
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -112,37 +113,41 @@ const CheckoutForm = () => {
   };
 
   return (
-    <form className="pt-10" onSubmit={handleSubmit}>
-      <div className="border p-2 max-w-xl">
-        <CardElement
-          options={{
-            style: {
-              base: {
-                fontSize: "16px",
-                color: "#424770",
-                "::placeholder": {
-                  color: "#aab7c4",
+    <Container>
+      <div className="max-w-xl w-full mx-auto py-16">
+        <form className="pt-10" onSubmit={handleSubmit}>
+          <div className="border p-2 max-w-xl">
+            <CardElement
+              options={{
+                style: {
+                  base: {
+                    fontSize: "16px",
+                    color: "#424770",
+                    "::placeholder": {
+                      color: "#aab7c4",
+                    },
+                  },
+                  invalid: {
+                    color: "#9e2146",
+                  },
                 },
-              },
-              invalid: {
-                color: "#9e2146",
-              },
-            },
-          }}
-        />
+              }}
+            />
+          </div>
+          <button
+            className="btn bg-[#ff184e] border-[#ff184e] rounded  hover:bg-[#4c5161] hover:border-[#4c5161] text-white font-medium uppercase mt-2 w-24"
+            type="submit"
+            disabled={!stripe || !clientSecret}
+          >
+            Pay
+          </button>
+          <p className="bg-red-600">{error}</p>
+          {transactionId && (
+            <p className="text-green-400">Your trans Id: {transactionId}</p>
+          )}
+        </form>
       </div>
-      <button
-        className="btn btn-primary mt-2"
-        type="submit"
-        disabled={!stripe || !clientSecret}
-      >
-        Pay
-      </button>
-      <p className="bg-red-600">{error}</p>
-      {transactionId && (
-        <p className="text-green-400">Your trans Id: {transactionId}</p>
-      )}
-    </form>
+    </Container>
   );
 };
 

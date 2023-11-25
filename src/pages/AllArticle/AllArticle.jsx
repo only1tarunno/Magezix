@@ -16,29 +16,6 @@ const AllArticle = () => {
   const [lottieload, setLootieLoad] = useState(false);
   const axiosPublic = useAxiosPublic();
   const [isUserPremium, isUserPremiumloading] = usePremium();
-  console.log(isUserPremium);
-
-  // useEffect(() => {
-  //   const currentDate = new Date();
-
-  //   if (isUserPremium) {
-  //     const expireDate = new Date(isUserPremium?.premimiumExpire);
-
-  //     if (currentDate.getTime() <= expireDate.getTime()) {
-  //       // console.log("user premium");
-  //     } else {
-  //       // console.log("user not premium");
-  //       const userInfo = {
-  //         premiumTaken: false,
-  //       };
-  //       axiosSecure
-  //         .patch(`/users/${isUserPremium?.email}`, userInfo)
-  //         .then((res) => {
-  //           console.log(res.data);
-  //         });
-  //     }
-  //   }
-  // }, [isUserPremium, axiosSecure]);
 
   const { data, fetchNextPage, hasNextPage, isLoading, refetch } =
     useInfiniteQuery({

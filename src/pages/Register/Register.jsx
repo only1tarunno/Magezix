@@ -51,11 +51,9 @@ const Register = () => {
           email: data?.email,
           image: data?.photo,
           premiumTaken: false,
-          lastLogin: new Date(),
           role: "user",
         };
-        axiosPublic.post("/users", userInfo).then((res) => {
-          console.log(res.data);
+        axiosPublic.post("/users", userInfo).then(() => {
           Swal.fire({
             icon: "success",
             title: "User created successfully",

@@ -26,7 +26,6 @@ const SocialLogin = () => {
           name: result.user?.displayName,
           email: result.user?.email,
           image: result.user?.photoURL,
-          lastLogin: new Date(),
           premiumTaken: false,
           role: "user",
         };
