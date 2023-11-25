@@ -1,25 +1,37 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Loader from "../../components/shared/Loader";
 import InnerPageBanner from "../../components/shared/InnerPageBanner";
 import Container from "../../components/shared/Container";
+import usePremium from "../../hooks/usePremium";
+import { useState } from "react";
 
 const ArticleDetails = () => {
   const { id } = useParams();
+  const [spin, setSpin] = useState(false);
   const axiosSecure = useAxiosSecure();
+  const [isUserPremium] = usePremium();
+  const navigate = useNavigate();
   const { data: article = {}, isLoading } = useQuery({
     queryKey: ["singleArticlesDetails"],
     queryFn: async () => {
+      setSpin(true);
       const res = await axiosSecure.get(`/allArticles/${id}`);
+      setSpin(false);
       return res.data;
     },
   });
 
-  const { title, image, publisher, tags, description, views } = article;
+  const { title, image, premium, publisher, tags, description, views } =
+    article;
 
-  if (isLoading) {
+  if (isLoading || spin) {
     return <Loader></Loader>;
+  }
+
+  if (premium === "premium" && !isUserPremium?.premiumTaken) {
+    return navigate("/");
   }
 
   return (

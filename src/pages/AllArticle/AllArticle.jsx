@@ -7,13 +7,38 @@ import Container from "../../components/shared/Container";
 import ArticleCard from "./ArticleCard";
 import InnerPageBanner from "../../components/shared/InnerPageBanner";
 import Lottie from "lottie-web";
+import usePremium from "../../hooks/usePremium";
 
 const AllArticle = () => {
   const [search, setSearch] = useState("");
-  const axiosPublic = useAxiosPublic();
   const [isSearching, setIsSearching] = useState(false);
   const [tags, setTags] = useState("");
   const [lottieload, setLootieLoad] = useState(false);
+  const axiosPublic = useAxiosPublic();
+  const [isUserPremium, isUserPremiumloading] = usePremium();
+  console.log(isUserPremium);
+
+  // useEffect(() => {
+  //   const currentDate = new Date();
+
+  //   if (isUserPremium) {
+  //     const expireDate = new Date(isUserPremium?.premimiumExpire);
+
+  //     if (currentDate.getTime() <= expireDate.getTime()) {
+  //       // console.log("user premium");
+  //     } else {
+  //       // console.log("user not premium");
+  //       const userInfo = {
+  //         premiumTaken: false,
+  //       };
+  //       axiosSecure
+  //         .patch(`/users/${isUserPremium?.email}`, userInfo)
+  //         .then((res) => {
+  //           console.log(res.data);
+  //         });
+  //     }
+  //   }
+  // }, [isUserPremium, axiosSecure]);
 
   const { data, fetchNextPage, hasNextPage, isLoading, refetch } =
     useInfiniteQuery({
@@ -72,7 +97,7 @@ const AllArticle = () => {
     });
   }, [lottieload]);
 
-  if (isLoading) {
+  if (isLoading && isUserPremiumloading === "pending") {
     return <Loader></Loader>;
   }
 
@@ -133,11 +158,12 @@ const AllArticle = () => {
             loading={<Loader></Loader>}
           >
             <div className="grid lg:grid-cols-2 grid-cols-1 gap-8 my-10">
-              {articles.length > 0 ? (
+              {articles?.length > 0 ? (
                 articles.map((article, index) => (
                   <ArticleCard
                     key={`${article._id}_${index}`}
                     article={article}
+                    accessPremium={isUserPremium}
                   ></ArticleCard>
                 ))
               ) : (

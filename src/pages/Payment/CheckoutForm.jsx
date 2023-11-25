@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -13,7 +13,7 @@ const CheckoutForm = () => {
   const [transactionId, setTransactionId] = useState("");
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-
+  const navigate = useNavigate();
   const [params] = useSearchParams();
   const duration = params.get("duration");
   const price = params.get("price");
@@ -92,16 +92,19 @@ const CheckoutForm = () => {
         }
 
         const userInfo = {
+          premiumTaken: true,
           premimiumExpire: expireDate,
         };
-        console.log(userInfo.premimiumExpire);
+        console.log(userInfo);
 
-        await axiosSecure.patch(`/users/${user?.email}`, userInfo);
-        Swal.fire({
-          icon: "success",
-          title: "Your payment is success",
-          showConfirmButton: false,
-          timer: 1500,
+        axiosSecure.patch(`/users/${user?.email}`, userInfo).then(() => {
+          Swal.fire({
+            icon: "success",
+            title: "Your payment is success",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/allArticles");
         });
       }
     }
