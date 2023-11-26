@@ -5,16 +5,17 @@ import logo from "../../assets/logo.svg";
 import { GrLogout } from "react-icons/gr";
 import { AiOutlineMenu } from "react-icons/ai";
 import { BsGraphUp } from "react-icons/bs";
-import { MdAddBox, MdLibraryBooks } from "react-icons/md";
+import { MdLibraryBooks, MdArticle, MdAddToPhotos } from "react-icons/md";
 import { Link } from "react-router-dom";
 import MenuItem from "./MenuItem";
-import { FaHouse, FaUsers } from "react-icons/fa6";
+import { FaAddressCard, FaHouse, FaUsers } from "react-icons/fa6";
 import { CgProfile } from "react-icons/cg";
+import useAdmin from "../../hooks/useAdmin";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
   const [isActive, setActive] = useState(false);
-  const isAdmin = false;
+  const [isAdmin] = useAdmin();
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
@@ -60,12 +61,12 @@ const Sidebar = () => {
             {/* If a user is host */}
 
             <nav>
-              {isAdmin ? (
+              {isAdmin && (
                 <>
                   <MenuItem
                     icon={BsGraphUp}
                     label="Statistics"
-                    address="/dashboard"
+                    address="statistics"
                   />
                   <MenuItem
                     icon={FaUsers}
@@ -78,30 +79,27 @@ const Sidebar = () => {
                     address="allArticles"
                   />
                   <MenuItem
-                    icon={MdAddBox}
+                    icon={FaAddressCard}
                     label="Add Publisher"
                     address="addPublisher"
                   />
                 </>
-              ) : (
-                <>
-                  <MenuItem
-                    icon={CgProfile}
-                    label="My Profile"
-                    address="myProfile"
-                  />
-                  <MenuItem
-                    icon={MdLibraryBooks}
-                    label="My Articles"
-                    address="myArticles"
-                  />
-                  <MenuItem
-                    icon={MdAddBox}
-                    label="Add Article"
-                    address="addArticle"
-                  />
-                </>
               )}
+              <MenuItem
+                icon={CgProfile}
+                label="My Profile"
+                address="myProfile"
+              />
+              <MenuItem
+                icon={MdArticle}
+                label="My Articles"
+                address="myArticles"
+              />
+              <MenuItem
+                icon={MdAddToPhotos}
+                label="Add Article"
+                address="addArticle"
+              />
             </nav>
           </div>
         </div>

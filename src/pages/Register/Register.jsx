@@ -98,7 +98,7 @@ const Register = () => {
                   Profile PhotoUrl
                 </label>
                 <input
-                  type="text"
+                  type="url"
                   {...register("photo")}
                   placeholder="Enter Your Image URL"
                   required

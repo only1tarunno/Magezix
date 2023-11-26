@@ -4,11 +4,12 @@ import Button from "../shared/Button";
 import Container from "../shared/Container";
 import useAuth from "../../hooks/useAuth";
 import usePremium from "../../hooks/usePremium";
+import useAdmin from "../../hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const [isUserPremium] = usePremium();
-
+  const [isAdmin] = useAdmin();
   const navigate = useNavigate();
   const links = (
     <>
@@ -24,19 +25,16 @@ const Navbar = () => {
           <li>
             <NavLink to="/subscription">Subscription</NavLink>
           </li>
-          {/* {isAdmin && user && (
-        <li>
-          <NavLink to="/dashboard/adminHome">DASHBOARD</NavLink>
-        </li>
-      )}
-      {!isAdmin && user && (
-        <li>
-          <NavLink to="/dashboard/userHome">DASHBOARD</NavLink>
-        </li>
-      )} */}
-          <li>
-            <NavLink to="/dashboard">Dashboard</NavLink>
-          </li>
+          {isAdmin && user && (
+            <li>
+              <NavLink to="/dashboard/statistics">Dashboard</NavLink>
+            </li>
+          )}
+          {!isAdmin && user && (
+            <li>
+              <NavLink to="/dashboard/myProfile">Dashboard</NavLink>
+            </li>
+          )}
         </>
       )}
       {isUserPremium?.premiumTaken && (

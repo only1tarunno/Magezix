@@ -13,7 +13,7 @@ const MyProfile = () => {
     return <Loader></Loader>;
   }
   return (
-    <div className="pt-10">
+    <div className="pt-24">
       <SharedSectionTitle
         heading="Manage Profile "
         subHeading="Welcome to your profile page"

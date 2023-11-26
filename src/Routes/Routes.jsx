@@ -17,6 +17,8 @@ import MyArticles from "../pages/MyArticles/MyArticles";
 import UpdateArtice from "../pages/UpdateArtice/UpdateArtice";
 import DashboardLayout from "../layout/DashboardLayout";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
+import AdminRoute from "./AdminRoute";
+import AddPublisher from "../pages/Dashboard/AddPublisher/AddPublisher";
 
 const router = createBrowserRouter([
   {
@@ -108,8 +110,36 @@ const router = createBrowserRouter([
       },
       // admin routes
       {
-        path: "l",
-        element: <AdminHome></AdminHome>,
+        path: "statistics",
+        element: (
+          <AdminRoute>
+            <AdminHome></AdminHome>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "addPublisher",
+        element: (
+          <AdminRoute>
+            <AddPublisher></AddPublisher>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "allArticles",
+        element: (
+          <AdminRoute>
+            <AdminHome></AdminHome>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "allUsers",
+        element: (
+          <AdminRoute>
+            <AdminHome></AdminHome>
+          </AdminRoute>
+        ),
       },
     ],
   },
