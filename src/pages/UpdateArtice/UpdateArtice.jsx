@@ -157,6 +157,9 @@ const UpdateArticle = () => {
             </div>
 
             <div>
+              <label className="label">
+                <span className="label-text">Tags</span>
+              </label>
               <Select
                 defaultValue={selectedOption}
                 onChange={setSelectedOption}
