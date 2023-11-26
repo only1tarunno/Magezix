@@ -103,7 +103,7 @@ const CheckoutForm = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-          navigate("/premiumArticles");
+          navigate("/");
         });
       }
     }
@@ -133,7 +133,7 @@ const CheckoutForm = () => {
             />
           </div>
           <button
-            className="btn bg-[#ff184e] border-[#ff184e] rounded  hover:bg-[#4c5161] hover:border-[#4c5161] text-white font-medium uppercase mt-2 w-24"
+            className="btn bg-[#BB9CC0] border-[#BB9CC0] rounded  hover:bg-[#4c5161] hover:border-[#4c5161] text-white font-medium uppercase mt-2 w-24"
             type="submit"
             disabled={!stripe || !clientSecret}
           >

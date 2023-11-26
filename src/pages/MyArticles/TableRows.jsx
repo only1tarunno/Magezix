@@ -62,7 +62,7 @@ const TableRows = ({ article, serial, handleDelete }) => {
       <td>
         <button
           onClick={() => handleDelete(_id)}
-          className="btn btn-ghost btn-xs rounded bg-[#ff184e]"
+          className="btn btn-ghost btn-xs rounded bg-[#BB9CC0]"
         >
           <FaRegTrashCan />
         </button>

@@ -1,22 +1,20 @@
 import Chart from "react-google-charts";
 import useAuth from "../../../hooks/useAuth";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "../../../components/shared/Loader";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const AdminHome = () => {
   const { user } = useAuth();
 
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const { data: publishers = [], isLoading } = useQuery({
     queryKey: ["artcleCountbyCategory"],
     queryFn: async () => {
-      const res = await axiosPublic.get("/artcleCountbyCategory");
+      const res = await axiosSecure.get("/artcleCountbyCategory");
       return res.data;
     },
   });
-
-  console.log("result", publishers);
 
   if (isLoading) {
     return <Loader></Loader>;

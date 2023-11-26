@@ -17,10 +17,8 @@ const ArticleCard = ({ article, accessPremium }) => {
     const expireDate = new Date(premimiumExpire);
 
     if (currentDate.getTime() <= expireDate.getTime()) {
-      console.log("user premium");
       navigate(`/allArticles/${id}`);
     } else {
-      console.log("user not premium");
       const userInfo = {
         premiumTaken: false,
       };
@@ -59,14 +57,14 @@ const ArticleCard = ({ article, accessPremium }) => {
               <button
                 disabled={!premiumTaken}
                 onClick={() => handlePremiumArticleDetails(_id)}
-                className="btn bg-[#ff184e] border-[#ff184e] rounded  hover:bg-[#4c5161] hover:border-[#4c5161] text-white font-medium uppercase"
+                className="btn bg-[#BB9CC0] border-[#BB9CC0] rounded  hover:bg-[#4c5161] hover:border-[#4c5161] text-white font-medium uppercase"
               >
                 Details
               </button>
             ) : (
               <button
                 onClick={() => navigate(_id)}
-                className="btn bg-[#ff184e] border-[#ff184e] rounded  hover:bg-[#4c5161] hover:border-[#4c5161] text-white font-medium uppercase"
+                className="btn bg-[#BB9CC0] border-[#BB9CC0] rounded  hover:bg-[#4c5161] hover:border-[#4c5161] text-white font-medium uppercase"
               >
                 Details
               </button>

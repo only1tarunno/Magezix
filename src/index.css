@@ -14,12 +14,12 @@ body {
 
 .menu-horizontal > li .active,
 .dropdown-content > li .active {
-  background-color: #ff184e !important;
+  background-color: #bb9cc0 !important;
   color: #fff !important;
 }
 
 .navbar a:hover {
-  background-color: #ff184e !important;
+  background-color: #bb9cc0 !important;
   color: white !important;
   outline: none;
   outline-offset: 0;
@@ -31,19 +31,19 @@ body {
   -webkit-line-clamp: 2;
 }
 div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
-  background-color: #ff184e !important;
+  background-color: #bb9cc0 !important;
 }
 
 .ribon {
   top: 14px;
   right: -64px;
-  background-color: #ff184e;
+  background-color: #bb9cc0;
   color: white;
   padding: 8px 16px;
   transform: rotate(45deg);
   width: 200px;
   text-align: center;
 }
-/*red: #ff184e */
+/*red: #BB9CC0 */
 /* #000000 */
 /* details : #4c5161 */

@@ -25,14 +25,18 @@ const Navbar = () => {
           <li>
             <NavLink to="/subscription">Subscription</NavLink>
           </li>
+          <li>
+            <NavLink to="/addArticle">Add Article</NavLink>
+          </li>
+          <li>
+            <NavLink to="/myArticles">My Articles</NavLink>
+          </li>
+          <li>
+            <NavLink to="/myProfile">My Profile</NavLink>
+          </li>
           {isAdmin && user && (
             <li>
-              <NavLink to="/dashboard/statistics">Dashboard</NavLink>
-            </li>
-          )}
-          {!isAdmin && user && (
-            <li>
-              <NavLink to="/dashboard/myProfile">Dashboard</NavLink>
+              <NavLink to="/dashboard">Dashboard</NavLink>
             </li>
           )}
         </>
@@ -50,7 +54,7 @@ const Navbar = () => {
   };
 
   const handleMyprofile = () => {
-    navigate("/dashboard/myProfile");
+    navigate("/myProfile");
   };
 
   return (
@@ -102,7 +106,7 @@ const Navbar = () => {
 
                   <button
                     onClick={handleLogOut}
-                    className="btn bg-[#ff184e] border-[#ff184e] rounded  hover:bg-[#4c5161] hover:border-[#4c5161] text-white font-medium uppercase"
+                    className="btn bg-[#BB9CC0] border-[#BB9CC0] rounded  hover:bg-[#4c5161] hover:border-[#4c5161] text-white font-medium uppercase"
                   >
                     Logout
                   </button>

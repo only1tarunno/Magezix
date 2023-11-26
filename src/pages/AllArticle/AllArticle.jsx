@@ -90,7 +90,7 @@ const AllArticle = () => {
             <select
               value={tags}
               onChange={handleTags}
-              className="select select-bordered w-full md:max-w-xs focus:outline-none"
+              className="select select-bordered capitalize w-full md:max-w-xs focus:outline-none"
             >
               <option value={""}>Filter By Tags</option>
               <option>technology</option>
@@ -117,7 +117,7 @@ const AllArticle = () => {
                 />
               </div>
               <div className="indicator">
-                <button className="btn join-item hover:bg-[#ff184e] hover:border-[#ff184e] hover:text-white">
+                <button className="btn join-item hover:bg-[#BB9CC0] hover:border-[#BB9CC0] hover:text-white">
                   Search
                 </button>
               </div>

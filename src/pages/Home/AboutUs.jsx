@@ -12,10 +12,10 @@ const AboutUs = () => {
             <img src={about} className="w-full" alt="" />
           </div>
           <div className="w-[48%]">
-            <h3 className="text-[#ff184e] font-medium text-xl">About Us</h3>
+            <h3 className="text-[#BB9CC0] font-medium text-xl">About Us</h3>
             <h2 className="text-4xl max-w-xl font-bold py-4 capitalize">
               More Than 25+ Years We Provide True{" "}
-              <span style={{ color: "#ff184e", fontWeight: "bold" }}>
+              <span style={{ color: "red", fontWeight: "bold" }}>
                 <Typewriter
                   words={["Stories", "Reports", "News"]}
                   loop={5}

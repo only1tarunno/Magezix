@@ -57,7 +57,7 @@ const ArticleDetails = () => {
               </h5>
               <p className="mb-3 text-xl lg:text-2xl font-bold text-gray-700  text-center md:text-start">
                 <span className="font-bold">Publisher :</span>{" "}
-                <span className="text-[#ff184e]">{publisher}</span>
+                <span className="text-[#BB9CC0]">{publisher}</span>
               </p>
               <p className="mb-3 font-normal  text-[#4c5161] text-center md:text-start lg:text-xl text-base">
                 <span className="font-bold">Summary :</span> {description}

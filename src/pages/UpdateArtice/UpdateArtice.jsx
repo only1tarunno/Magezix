@@ -97,7 +97,7 @@ const UpdateArticle = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      navigate("/dashboard/myArticles");
+      navigate("/myArticles");
     }
   };
 
@@ -184,7 +184,7 @@ const UpdateArticle = () => {
 
             <button
               type="submit"
-              className="btn w-full bg-[#ff184e] border-[#ff184e] rounded  hover:bg-[#4c5161] hover:border-[#4c5161] text-white font-medium"
+              className="btn w-full bg-[#BB9CC0] border-[#BB9CC0] rounded  hover:bg-[#4c5161] hover:border-[#4c5161] text-white font-medium"
             >
               Add Article
             </button>

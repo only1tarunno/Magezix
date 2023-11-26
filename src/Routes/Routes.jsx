@@ -19,6 +19,7 @@ import DashboardLayout from "../layout/DashboardLayout";
 import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 import AdminRoute from "./AdminRoute";
 import AddPublisher from "../pages/Dashboard/AddPublisher/AddPublisher";
+import AllUser from "../pages/Dashboard/AllUser/AllUser";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,14 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
         path: "/updateArticle/:id",
         element: (
           <PvtRoute>
@@ -41,6 +50,38 @@ const router = createBrowserRouter([
       {
         path: "/allArticles",
         element: <AllArticle></AllArticle>,
+      },
+      {
+        path: "/myProfile",
+        element: (
+          <PvtRoute>
+            <MyProfile></MyProfile>
+          </PvtRoute>
+        ),
+      },
+      {
+        path: "/updateProfile",
+        element: (
+          <PvtRoute>
+            <Updateprofile></Updateprofile>
+          </PvtRoute>
+        ),
+      },
+      {
+        path: "/myArticles",
+        element: (
+          <PvtRoute>
+            <MyArticles></MyArticles>
+          </PvtRoute>
+        ),
+      },
+      {
+        path: "/addArticle",
+        element: (
+          <PvtRoute>
+            <AddArticle></AddArticle>
+          </PvtRoute>
+        ),
       },
       {
         path: "/allArticles/:id",
@@ -76,70 +117,30 @@ const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: "/login",
-    element: <Login></Login>,
-  },
-  {
-    path: "/register",
-    element: <Register></Register>,
-  },
+
   {
     path: "/dashboard",
     element: (
-      <PvtRoute>
+      <AdminRoute>
         <DashboardLayout></DashboardLayout>
-      </PvtRoute>
+      </AdminRoute>
     ),
     children: [
       {
-        path: "myProfile",
-        element: <MyProfile></MyProfile>,
-      },
-      {
-        path: "updateProfile",
-        element: <Updateprofile></Updateprofile>,
-      },
-      {
-        path: "myArticles",
-        element: <MyArticles></MyArticles>,
-      },
-      {
-        path: "addArticle",
-        element: <AddArticle></AddArticle>,
-      },
-      // admin routes
-      {
-        path: "statistics",
-        element: (
-          <AdminRoute>
-            <AdminHome></AdminHome>
-          </AdminRoute>
-        ),
+        path: "/dashboard",
+        element: <AdminHome></AdminHome>,
       },
       {
         path: "addPublisher",
-        element: (
-          <AdminRoute>
-            <AddPublisher></AddPublisher>
-          </AdminRoute>
-        ),
+        element: <AddPublisher></AddPublisher>,
       },
       {
         path: "allArticles",
-        element: (
-          <AdminRoute>
-            <AdminHome></AdminHome>
-          </AdminRoute>
-        ),
+        element: <AdminHome></AdminHome>,
       },
       {
         path: "allUsers",
-        element: (
-          <AdminRoute>
-            <AdminHome></AdminHome>
-          </AdminRoute>
-        ),
+        element: <AllUser></AllUser>,
       },
     ],
   },

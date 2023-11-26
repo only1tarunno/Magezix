@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import Container from "../../components/shared/Container";
-import SharedSectionTitle from "../../components/shared/SharedSectionTitle";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import Loader from "../../components/shared/Loader";
 import TableRows from "./TableRows";
 import Swal from "sweetalert2";
+import Container from "../../components/shared/Container";
+import InnerPageBanner from "../../components/shared/InnerPageBanner";
 
 const MyArticles = () => {
   const axiosSecure = useAxiosSecure();
@@ -54,13 +54,13 @@ const MyArticles = () => {
   };
 
   return (
-    <div className="pt-16 pb-16">
+    <>
+      <InnerPageBanner
+        title="Manage your all post"
+        subTitle="my article"
+      ></InnerPageBanner>
       <Container>
-        <SharedSectionTitle
-          heading={"Post overview"}
-          subHeading={"Your all post at a glance"}
-        ></SharedSectionTitle>
-        <div className="overflow-x-auto pt-16">
+        <div className="overflow-x-auto py-16">
           <table className="table rounded overflow-hidden text-center">
             {/* head */}
             <thead className="bg-[#cccccc] text-black">
@@ -87,8 +87,13 @@ const MyArticles = () => {
             </tbody>
           </table>
         </div>
+        {allArticles?.length === 0 && (
+          <h2 className="text-3xl font-bold text-center pt-10 py-24">
+            You don&apos;t add any articles yet. Please add some article
+          </h2>
+        )}
       </Container>
-    </div>
+    </>
   );
 };
 

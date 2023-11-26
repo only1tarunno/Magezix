@@ -52,7 +52,7 @@ const Subscription = () => {
                 defaultValue={user?.email}
                 placeholder="Enter Your Email Here"
                 disabled
-                className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
+                className="w-full px-3 py-2 border rounded-md border-[#BB9CC0] focus:outline-[#BB9CC0] bg-gray-200 text-gray-900"
                 data-temp-mail-org="0"
               />
             </div>
@@ -77,7 +77,7 @@ const Subscription = () => {
             </div>
             <button
               type="submit"
-              className="btn w-full bg-[#ff184e] border-[#ff184e] rounded  hover:bg-[#4c5161] hover:border-[#4c5161] text-white font-medium"
+              className="btn w-full bg-[#BB9CC0] border-[#BB9CC0] rounded  hover:bg-[#4c5161] hover:border-[#4c5161] text-white font-medium"
             >
               Subscribe
             </button>

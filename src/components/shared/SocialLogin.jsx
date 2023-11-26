@@ -44,7 +44,7 @@ const SocialLogin = () => {
   return (
     <div
       onClick={handleGoogleLogin}
-      className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer"
+      className="flex justify-center items-center space-x-2 border m-3 p-2 border-[#BB9CC0] border-rounded cursor-pointer"
     >
       <FcGoogle size={32} />
 
