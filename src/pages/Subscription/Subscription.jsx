@@ -27,14 +27,7 @@ const Subscription = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const cart = {
-      email: user?.email,
-      price: totalPrice,
-      duration: totalduration,
-    };
-
     navigate(`/payment?price=${totalPrice}&duration=${totalduration}`);
-    console.log(cart);
   };
 
   return (

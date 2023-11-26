@@ -27,7 +27,7 @@ const Updateprofile = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/myProfile");
+        navigate("/dashboard/myProfile");
       });
   };
 
@@ -39,7 +39,7 @@ const Updateprofile = () => {
       <div className="flex flex-col w-full lg:w-1/2 p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
         <div className="mb-8 text-center">
           <h1 className="my-3 text-4xl font-bold">Update Your Profile</h1>
-          <p className="text-sm text-gray-400">Welcome to MageZix</p>
+          <p className="text-sm text-gray-400">Fill The Form</p>
         </div>
         <form
           onSubmit={handleSubmit(onSubmit)}

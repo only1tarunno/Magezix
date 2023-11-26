@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import Container from "../../components/shared/Container";
-import InnerPageBanner from "../../components/shared/InnerPageBanner";
 import usePremium from "../../hooks/usePremium";
 import Button from "../../components/shared/Button";
 import Loader from "../../components/shared/Loader";
+import SharedSectionTitle from "../../components/shared/SharedSectionTitle";
 
 const MyProfile = () => {
   const [isUserPremium, isUserPremiumloading] = usePremium();
@@ -13,11 +13,11 @@ const MyProfile = () => {
     return <Loader></Loader>;
   }
   return (
-    <div>
-      <InnerPageBanner
-        title="Welcome TO Your Profile Page"
-        subTitle="Profile"
-      ></InnerPageBanner>
+    <div className="pt-10">
+      <SharedSectionTitle
+        heading="Manage Profile "
+        subHeading="Welcome to your profile page"
+      ></SharedSectionTitle>
       <Container>
         <div className="flex flex-col lg:flex-row gap-5 py-16 justify-center">
           <div className="order-2 self-center lg:order-1 w-full lg:max-w-sm space-y-3">
@@ -34,7 +34,7 @@ const MyProfile = () => {
               {isUserPremium.address ? isUserPremium.address : "No Data"}
             </p>
             <div>
-              <Link to="/updateProfile">
+              <Link to="/dashboard/updateProfile">
                 <Button text={"Update profile"}></Button>
               </Link>
             </div>

@@ -97,15 +97,15 @@ const UpdateArticle = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      navigate("/myArticles");
+      navigate("/dashboard/myArticles");
     }
   };
 
   return (
     <div>
       <InnerPageBanner
-        title="Add A Article"
-        subTitle="addArticle"
+        title="Update Article"
+        subTitle="updateArticle"
       ></InnerPageBanner>
       <div className="py-10">
         <Container>

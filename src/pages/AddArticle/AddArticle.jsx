@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import InnerPageBanner from "../../components/shared/InnerPageBanner";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Container from "../../components/shared/Container";
@@ -7,6 +6,7 @@ import { useEffect, useState } from "react";
 import Select from "react-select";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import SharedSectionTitle from "../../components/shared/SharedSectionTitle";
 
 // imgbb
 const imgbb_key = import.meta.env.VITE_imgbb_key;
@@ -78,11 +78,11 @@ const AddArticle = () => {
     }
   };
   return (
-    <div>
-      <InnerPageBanner
-        title="Add A Article"
-        subTitle="addArticle"
-      ></InnerPageBanner>
+    <div className="pt-16">
+      <SharedSectionTitle
+        heading={"Add a article"}
+        subHeading={"Fill the form with necessary information"}
+      ></SharedSectionTitle>
       <div className="py-10">
         <Container>
           <form

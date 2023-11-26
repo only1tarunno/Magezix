@@ -22,19 +22,20 @@ const Navbar = () => {
       {user && (
         <>
           <li>
-            <NavLink to="/addArticles">Add Articles</NavLink>
-          </li>
-          <li>
             <NavLink to="/subscription">Subscription</NavLink>
           </li>
+          {/* {isAdmin && user && (
+        <li>
+          <NavLink to="/dashboard/adminHome">DASHBOARD</NavLink>
+        </li>
+      )}
+      {!isAdmin && user && (
+        <li>
+          <NavLink to="/dashboard/userHome">DASHBOARD</NavLink>
+        </li>
+      )} */}
           <li>
             <NavLink to="/dashboard">Dashboard</NavLink>
-          </li>
-          <li>
-            <NavLink to="/myArticles">My Articles</NavLink>
-          </li>
-          <li>
-            <NavLink to="/myProfile">My Profile</NavLink>
           </li>
         </>
       )}
@@ -48,6 +49,10 @@ const Navbar = () => {
 
   const handleLogOut = () => {
     logOut().then(navigate("/")).catch();
+  };
+
+  const handleMyprofile = () => {
+    navigate("/dashboard/myProfile");
   };
 
   return (
@@ -90,13 +95,13 @@ const Navbar = () => {
             <div className="navbar-end">
               {user ? (
                 <div className="flex flex-col lg:flex-row items-center gap-2">
-                  <Link to="/myProfile">
-                    <img
-                      className="w-10 rounded-[50%] h-10 object-cover"
-                      src={user?.photoURL}
-                      alt=""
-                    />
-                  </Link>
+                  <img
+                    onClick={handleMyprofile}
+                    className="w-10 rounded-[50%] h-10 object-cover cursor-pointer"
+                    src={user?.photoURL}
+                    alt=""
+                  />
+
                   <button
                     onClick={handleLogOut}
                     className="btn bg-[#ff184e] border-[#ff184e] rounded  hover:bg-[#4c5161] hover:border-[#4c5161] text-white font-medium uppercase"

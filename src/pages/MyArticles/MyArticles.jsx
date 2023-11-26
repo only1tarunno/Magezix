@@ -3,7 +3,6 @@ import Container from "../../components/shared/Container";
 import SharedSectionTitle from "../../components/shared/SharedSectionTitle";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
-
 import Loader from "../../components/shared/Loader";
 import TableRows from "./TableRows";
 import Swal from "sweetalert2";
@@ -55,7 +54,7 @@ const MyArticles = () => {
   };
 
   return (
-    <div className="pt-36 pb-16">
+    <div className="pt-16 pb-16">
       <Container>
         <SharedSectionTitle
           heading={"Post overview"}

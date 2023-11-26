@@ -77,7 +77,6 @@ const CheckoutForm = () => {
     } else {
       console.log("success", paymentIntent);
       if (paymentIntent.status === "succeeded") {
-        console.log("trans id", paymentIntent.id);
         setTransactionId(paymentIntent.id);
 
         // now save the paymeent in database
@@ -96,7 +95,6 @@ const CheckoutForm = () => {
           premiumTaken: true,
           premimiumExpire: expireDate,
         };
-        console.log(userInfo);
 
         axiosSecure.patch(`/users/${user?.email}`, userInfo).then(() => {
           Swal.fire({

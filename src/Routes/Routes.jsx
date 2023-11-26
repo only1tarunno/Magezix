@@ -15,6 +15,8 @@ import MyProfile from "../pages/MyProfile/MyProfile";
 import Updateprofile from "../pages/MyProfile/Updateprofile";
 import MyArticles from "../pages/MyArticles/MyArticles";
 import UpdateArtice from "../pages/UpdateArtice/UpdateArtice";
+import DashboardLayout from "../layout/DashboardLayout";
+import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 
 const router = createBrowserRouter([
   {
@@ -25,14 +27,6 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-      },
-      {
-        path: "/addArticles",
-        element: (
-          <PvtRoute>
-            <AddArticle></AddArticle>
-          </PvtRoute>
-        ),
       },
       {
         path: "/updateArticle/:id",
@@ -78,30 +72,6 @@ const router = createBrowserRouter([
           </PvtRoute>
         ),
       },
-      {
-        path: "/myProfile",
-        element: (
-          <PvtRoute>
-            <MyProfile></MyProfile>
-          </PvtRoute>
-        ),
-      },
-      {
-        path: "/updateProfile",
-        element: (
-          <PvtRoute>
-            <Updateprofile></Updateprofile>
-          </PvtRoute>
-        ),
-      },
-      {
-        path: "/myArticles",
-        element: (
-          <PvtRoute>
-            <MyArticles></MyArticles>
-          </PvtRoute>
-        ),
-      },
     ],
   },
   {
@@ -111,6 +81,37 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register></Register>,
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PvtRoute>
+        <DashboardLayout></DashboardLayout>
+      </PvtRoute>
+    ),
+    children: [
+      {
+        path: "myProfile",
+        element: <MyProfile></MyProfile>,
+      },
+      {
+        path: "updateProfile",
+        element: <Updateprofile></Updateprofile>,
+      },
+      {
+        path: "myArticles",
+        element: <MyArticles></MyArticles>,
+      },
+      {
+        path: "addArticle",
+        element: <AddArticle></AddArticle>,
+      },
+      // admin routes
+      {
+        path: "l",
+        element: <AdminHome></AdminHome>,
+      },
+    ],
   },
 ]);
 
