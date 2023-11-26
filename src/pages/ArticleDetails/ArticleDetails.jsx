@@ -13,12 +13,13 @@ const ArticleDetails = () => {
   const axiosSecure = useAxiosSecure();
   const [isUserPremium] = usePremium();
   const navigate = useNavigate();
-  const { data: article = {}, isLoading } = useQuery({
+  const { data: article = {}, status } = useQuery({
     queryKey: ["singleArticlesDetails"],
     queryFn: async () => {
       setSpin(true);
       const res = await axiosSecure.get(`/allArticles/${id}`);
       setSpin(false);
+
       return res.data;
     },
   });
@@ -26,7 +27,7 @@ const ArticleDetails = () => {
   const { title, image, premium, publisher, tags, description, views } =
     article;
 
-  if (isLoading || spin) {
+  if (status === "pending" || spin) {
     return <Loader></Loader>;
   }
 
@@ -63,7 +64,7 @@ const ArticleDetails = () => {
               </p>
               <p className="mb-3 font-normal  text-gray-700 text-center md:text-start lg:text-xl text-base">
                 <span className="font-bold">Tags : </span>
-                {tags.map((tag, index) => (
+                {tags?.map((tag, index) => (
                   <span key={index}>
                     {tag} {index !== tags.length - 1 && <span>, </span>}
                   </span>
