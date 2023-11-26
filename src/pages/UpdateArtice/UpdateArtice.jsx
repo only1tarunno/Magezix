@@ -60,6 +60,7 @@ const UpdateArticle = () => {
         : loaderArticle?.description,
       Approved: "pending",
       premium: "basic",
+      authorName: user?.displayName,
       authorEmail: user?.email,
       authorPhoto: user?.photoURL,
       postedTime: new Date(),
@@ -186,7 +187,7 @@ const UpdateArticle = () => {
               type="submit"
               className="btn w-full bg-[#BB9CC0] border-[#BB9CC0] rounded  hover:bg-[#4c5161] hover:border-[#4c5161] text-white font-medium"
             >
-              Add Article
+              Update Article
             </button>
           </form>
         </Container>

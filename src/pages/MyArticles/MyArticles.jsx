@@ -56,8 +56,8 @@ const MyArticles = () => {
   return (
     <>
       <InnerPageBanner
-        title="Manage your all post"
-        subTitle="my article"
+        title="Manage your all article"
+        subTitle="myArticle"
       ></InnerPageBanner>
       <Container>
         <div className="overflow-x-auto py-16">

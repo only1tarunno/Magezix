@@ -23,10 +23,10 @@ const Navbar = () => {
       {user && (
         <>
           <li>
-            <NavLink to="/subscription">Subscription</NavLink>
+            <NavLink to="/addArticle">Add Article</NavLink>
           </li>
           <li>
-            <NavLink to="/addArticle">Add Article</NavLink>
+            <NavLink to="/subscription">Subscription</NavLink>
           </li>
           <li>
             <NavLink to="/myArticles">My Articles</NavLink>
@@ -64,7 +64,7 @@ const Navbar = () => {
           <div className="navbar bg-base-100">
             <div className="navbar-start">
               <div className="dropdown">
-                <label tabIndex={0} className="btn btn-ghost 2xl:hidden">
+                <label tabIndex={0} className="btn btn-ghost lg:hidden">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5"
@@ -91,7 +91,7 @@ const Navbar = () => {
                 <img src={logo} className="w-36" alt="" />
               </div>
             </div>
-            <div className="navbar-center hidden 2xl:flex">
+            <div className="navbar-center hidden lg:flex">
               <ul className="menu menu-horizontal px-1">{links}</ul>
             </div>
             <div className="navbar-end">

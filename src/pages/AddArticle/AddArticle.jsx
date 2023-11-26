@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Select from "react-select";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
-import SharedSectionTitle from "../../components/shared/SharedSectionTitle";
+import InnerPageBanner from "../../components/shared/InnerPageBanner";
 
 // imgbb
 const imgbb_key = import.meta.env.VITE_imgbb_key;
@@ -61,6 +61,7 @@ const AddArticle = () => {
         description: data?.description,
         Approved: "pending",
         premium: "basic",
+        authorName: user?.displayName,
         authorEmail: user?.email,
         authorPhoto: user?.photoURL,
         postedTime: new Date(),
@@ -79,10 +80,10 @@ const AddArticle = () => {
   };
   return (
     <div className="pt-16">
-      <SharedSectionTitle
-        heading={"Add a article"}
-        subHeading={"Fill the form with necessary information"}
-      ></SharedSectionTitle>
+      <InnerPageBanner
+        title="Add a article"
+        subTitle="addArticle"
+      ></InnerPageBanner>
       <div className="py-10">
         <Container>
           <form

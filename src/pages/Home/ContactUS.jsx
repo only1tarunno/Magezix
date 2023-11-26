@@ -8,7 +8,7 @@ const ContactUS = () => {
       {" "}
       <Container>
         <SharedSectionTitle
-          heading={"Cpntact us"}
+          heading={"Contact us"}
           subHeading={"Feel free to reach us "}
         ></SharedSectionTitle>
         <div className="flex flex-col md:flex-row items-center justify-between my-16">

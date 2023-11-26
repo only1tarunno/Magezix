@@ -11,7 +11,7 @@ const InnerPageBanner = ({ title, subTitle }) => {
       }}
     >
       <div className=" z-30 text-center space-y-4">
-        <h2 className="font-bold text-4xl lg:text-5xl max-w-3xl text-white ">
+        <h2 className="font-bold text-4xl lg:text-5xl max-w-3xl capitalize text-white ">
           {title}
         </h2>
         <p className="text-white font-medium text-xl">
