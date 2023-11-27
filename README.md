@@ -1,8 +1,14 @@
 # Magezix
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live Link:
 
-Currently, two official plugins are available:
+Different features and functionalities of my website:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User can add articles, update their articles, also delete their articles
+- User can take subscription to read premium articles
+- Admin can check website statistics in dashboard
+- Admin can make other user admin
+- Admin can approve,decline,delete the articles which is added by Authors
+- User can search Article by their title
+- User can filter Article by their tags
+- User can show their profile page and also able to update their information
