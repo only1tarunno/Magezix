@@ -1,6 +1,6 @@
 # Magezix
 
-Live Link:
+Live Link: https://newspaper-fa271.web.app
 
 Different features and functionalities of my website:
 
