@@ -3,7 +3,7 @@ import { FaRegPenToSquare, FaRegTrashCan } from "react-icons/fa6";
 
 /* eslint-disable react/prop-types */
 const TableRows = ({ article, serial, handleDelete }) => {
-  const { _id, image, title, Approved, premium } = article;
+  const { _id, image, title, Approved, premium } = article || {};
   const navigate = useNavigate();
 
   const handleDetail = (id) => {
@@ -41,10 +41,28 @@ const TableRows = ({ article, serial, handleDelete }) => {
           <span className="bg-green-500">Approved</span>
         ) : Approved === "denied" ? (
           <>
-            <span>Denied</span>
-            <button className="btn btn-xs rounded bg-[#FFA500]">
+            <p>Denied</p>
+            <button
+              onClick={() =>
+                document.getElementById(`my_modal_${_id}`).showModal()
+              }
+              className="btn btn-xs rounded bg-[#FFA500]"
+            >
               View Reason
             </button>
+
+            <dialog id={`my_modal_${_id}`} className="modal">
+              <div className="modal-box">
+                <form method="dialog">
+                  {/* if there is a button in form, it will close the modal */}
+                  <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                    ✕
+                  </button>
+                </form>
+                <h3 className="font-bold text-lg">Reason For Denied</h3>
+                <p className="py-4">{article?.reason}</p>
+              </div>
+            </dialog>
           </>
         ) : (
           <span className="bg-[#FFFF99]">Pending</span>

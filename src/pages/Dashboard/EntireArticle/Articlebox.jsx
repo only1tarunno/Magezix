@@ -1,7 +1,13 @@
 import { FaRegTrashCan } from "react-icons/fa6";
 
 /* eslint-disable react/prop-types */
-const Articlebox = ({ article, handleDelete, handleApproved }) => {
+const Articlebox = ({
+  article,
+  handleDelete,
+  handleApproved,
+  handlePremium,
+  handleDecline,
+}) => {
   const {
     _id,
     title,
@@ -57,13 +63,57 @@ const Articlebox = ({ article, handleDelete, handleApproved }) => {
       </td>
       <td>
         {premium === "basic" ? (
-          <button className="btn rounded btn-sm bg-[#2196F3]">Premium</button>
+          <button
+            onClick={() => handlePremium(_id)}
+            className="btn rounded btn-sm bg-[#2196F3]"
+          >
+            Premium
+          </button>
         ) : (
-          <span>This Article is premium</span>
+          <span className="font-bold text-[#FFD700]">
+            Article is <br /> premium
+          </span>
         )}
       </td>
       <td>
-        <button className="btn rounded btn-sm bg-[#ff9800]">Decline</button>
+        <button
+          onClick={() => document.getElementById(`my_modal_${_id}`).showModal()}
+          className="btn rounded btn-sm bg-[#ff9800]"
+        >
+          Decline
+        </button>
+        {/* modal start here  */}
+        <dialog id={`my_modal_${_id}`} className="modal">
+          <div className="modal-box">
+            <form method="dialog">
+              {/* if there is a button in form, it will close the modal */}
+              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                ✕
+              </button>
+            </form>
+            {/* form start here  */}
+            <form onSubmit={handleDecline}>
+              <div className="form-control mb-3">
+                <label className="label">
+                  <span className="label-text">Reason</span>
+                </label>
+                <textarea
+                  className="textarea textarea-bordered h-24"
+                  placeholder="Write few words..."
+                  name="reason"
+                  required
+                ></textarea>
+              </div>
+              <input type="hidden" name="id" defaultValue={_id} />
+              <button
+                type="submit"
+                className="btn w-full bg-[#BB9CC0] border-[#BB9CC0] rounded  hover:bg-[#4c5161] hover:border-[#4c5161] text-white font-medium"
+              >
+                Decline
+              </button>
+            </form>
+          </div>
+        </dialog>
       </td>
       <td>
         <button

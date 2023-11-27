@@ -5,9 +5,15 @@ import Loader from "../../../components/shared/Loader";
 import SharedSectionTitle from "../../../components/shared/SharedSectionTitle";
 import Articlebox from "./Articlebox";
 import Swal from "sweetalert2";
+import { useEffect, useState } from "react";
 
 const EntireArticle = () => {
   const axiosSecure = useAxiosSecure();
+  const [count, setCount] = useState(0);
+  const [currentPage, setCurrentpage] = useState(0);
+  const [spin, setSpin] = useState(false);
+  const numberOfpages = Math.ceil(count / 6);
+  const pages = [...Array(numberOfpages).keys()];
   const {
     data: entireArticles = [],
     status,
@@ -15,10 +21,21 @@ const EntireArticle = () => {
   } = useQuery({
     queryKey: ["EntireArticles"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/entireArticle");
+      const res = await axiosSecure.get(
+        `/entireArticle?page=${currentPage}&size=6`
+      );
       return res.data;
     },
   });
+
+  console.log(currentPage);
+
+  // pagination
+  useEffect(() => {
+    axiosSecure
+      .get("/entireArticlesCount")
+      .then((res) => setCount(res.data.count));
+  }, [axiosSecure]);
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -51,18 +68,71 @@ const EntireArticle = () => {
       Approved: "approved",
     };
     const res = await axiosSecure.patch(`/entireArticle/${id}`, updatingInfo);
-    refetch();
-    Swal.fire({
-      title: "Approved",
-      text: "Article has been Approved",
-      icon: "success",
-      showConfirmButton: false,
-      timer: 1500,
-    });
-    console.log(res.data);
+    if (res.data.modifiedCount > 0) {
+      refetch();
+      Swal.fire({
+        title: "Article is premium now",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
   };
 
-  if (status === "pending") {
+  const handlePremium = async (id) => {
+    const updatingInfo = {
+      premium: "premium",
+    };
+    const res = await axiosSecure.patch(`/entireArticle/${id}`, updatingInfo);
+
+    if (res.data.modifiedCount > 0) {
+      refetch();
+      Swal.fire({
+        title: "Article is premium now",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+
+  const handleDecline = async (e) => {
+    e.preventDefault();
+    const id = e.target.id.value;
+    const updatingInfo = {
+      Approved: "denied",
+      premium: "basic",
+      reason: e.target.reason.value,
+    };
+    const res = await axiosSecure.patch(`/entireArticle/${id}`, updatingInfo);
+
+    if (res.data.modifiedCount > 0) {
+      refetch();
+      Swal.fire({
+        title: "Article is declined",
+        icon: "success",
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+
+  const handleItem = async (page) => {
+    setSpin(true);
+    setCurrentpage(page);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await refetch();
+      setSpin(false);
+    };
+
+    fetchData();
+  }, [currentPage, refetch]);
+
+  if (status === "pending" || spin) {
     return <Loader></Loader>;
   }
 
@@ -96,6 +166,8 @@ const EntireArticle = () => {
                 key={article?._id}
                 handleDelete={handleDelete}
                 handleApproved={handleApproved}
+                handlePremium={handlePremium}
+                handleDecline={handleDecline}
                 article={article}
               ></Articlebox>
             ))}
@@ -103,7 +175,19 @@ const EntireArticle = () => {
           {/* foot */}
           <tfoot>
             <tr>
-              <th colSpan="10">Name</th>
+              <th colSpan="10">
+                {pages?.map((page) => (
+                  <button
+                    className={`mx-2 text-center btn btn-sm w-[33px]  rounded-[50%] ${
+                      currentPage === page ? "bg-[#bb9cc0]" : "bg-gray-200"
+                    }`}
+                    onClick={() => handleItem(page)}
+                    key={page}
+                  >
+                    {page + 1}
+                  </button>
+                ))}
+              </th>
             </tr>
           </tfoot>
         </table>
