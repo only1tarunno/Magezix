@@ -41,7 +41,7 @@ const Staticstics = () => {
           </div>
           <div className="text-center space-y-3">
             <CountUp className="text-5xl" duration={10} end={premiumUser} />
-            <h2 className="text-2xl capitalize">premium users</h2>
+            <h2 className="text-2xl capitalize">premium user</h2>
           </div>
         </div>
       </Container>

@@ -7,9 +7,11 @@ import Swal from "sweetalert2";
 import { FaSpinner } from "react-icons/fa6";
 import InnerPageBanner from "../../components/shared/InnerPageBanner";
 import Container from "../../components/shared/Container";
+import { useState } from "react";
 
 const Register = () => {
-  const { createUser, updateUserProfile, loading } = useAuth();
+  const [spin, setspin] = useState(false);
+  const { createUser, updateUserProfile } = useAuth();
   const axiosPublic = useAxiosPublic();
   const { register, handleSubmit, reset } = useForm();
   const location = useLocation();
@@ -43,30 +45,40 @@ const Register = () => {
       });
       return;
     }
-
-    createUser(data?.email, pass).then(() => {
-      console.log();
-      updateUserProfile(data?.name, data?.photo).then(() => {
-        // create user in data base
-        const userInfo = {
-          name: data?.name,
-          email: data?.email,
-          image: data?.photo,
-          premiumTaken: false,
-          role: "user",
-        };
-        axiosPublic.post("/users", userInfo).then(() => {
-          Swal.fire({
-            icon: "success",
-            title: "User created successfully",
-            showConfirmButton: false,
-            timer: 1500,
+    setspin(true);
+    createUser(data?.email, pass)
+      .then(() => {
+        console.log();
+        updateUserProfile(data?.name, data?.photo).then(() => {
+          // create user in data base
+          const userInfo = {
+            name: data?.name,
+            email: data?.email,
+            image: data?.photo,
+            premiumTaken: false,
+            role: "user",
+          };
+          axiosPublic.post("/users", userInfo).then(() => {
+            Swal.fire({
+              icon: "success",
+              title: "User created successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            reset();
+            navigate(from, { replace: true });
+            setspin(false);
           });
-          reset();
-          navigate(from, { replace: true });
         });
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops",
+          text: err.message,
+        });
+        setspin(false);
       });
-    });
   };
 
   return (
@@ -143,7 +155,7 @@ const Register = () => {
                   type="submit"
                   className="bg-[#BB9CC0] w-full rounded-md py-3 text-white"
                 >
-                  {loading ? (
+                  {spin ? (
                     <FaSpinner className=" animate-spin m-auto" />
                   ) : (
                     "Sign Up"

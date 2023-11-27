@@ -6,15 +6,18 @@ import Swal from "sweetalert2";
 import { FaSpinner } from "react-icons/fa6";
 import Container from "../../components/shared/Container";
 import InnerPageBanner from "../../components/shared/InnerPageBanner";
+import { useState } from "react";
 
 const Login = () => {
-  const { login, loading } = useAuth();
+  const { login } = useAuth();
   const { register, handleSubmit } = useForm();
+  const [spin, setspin] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location?.state?.from?.pathname || "/";
 
   const onSubmit = async (data) => {
+    setspin(true);
     login(data?.email, data?.password)
       .then(() => {
         Swal.fire({
@@ -24,6 +27,7 @@ const Login = () => {
           timer: 1500,
         });
         navigate(from, { replace: true });
+        setspin(false);
       })
       .catch(() => {
         Swal.fire({
@@ -31,6 +35,7 @@ const Login = () => {
           title: "Oops",
           text: "Invalid username or password",
         });
+        setspin(false);
       });
   };
 
@@ -82,7 +87,7 @@ const Login = () => {
                   type="submit"
                   className="bg-[#BB9CC0] w-full rounded-md py-3 text-white"
                 >
-                  {loading ? (
+                  {spin ? (
                     <FaSpinner className=" animate-spin m-auto" />
                   ) : (
                     "Sign In"

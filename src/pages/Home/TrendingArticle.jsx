@@ -42,10 +42,8 @@ const TrendingArticle = () => {
     const expireDate = new Date(isUserPremium?.premimiumExpire);
 
     if (currentDate.getTime() <= expireDate.getTime()) {
-      console.log("user premium");
       navigate(`/allArticles/${id}`);
     } else {
-      console.log("user not premium");
       const userInfo = {
         premiumTaken: false,
       };
