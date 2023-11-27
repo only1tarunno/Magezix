@@ -24,8 +24,18 @@ const ArticleDetails = () => {
     },
   });
 
-  const { title, image, premium, publisher, tags, description, views } =
-    article;
+  const {
+    title,
+    image,
+    premium,
+    publisher,
+    tags,
+    description,
+    views,
+    authorName,
+    authorPhoto,
+    postedTime,
+  } = article || {};
 
   if (status === "pending" || spin) {
     return <Loader></Loader>;
@@ -60,6 +70,17 @@ const ArticleDetails = () => {
                 <span className="text-[#BB9CC0]">{publisher}</span>
               </p>
               <p className="mb-3 font-normal  text-[#4c5161] text-center md:text-start lg:text-xl text-base">
+                <p className="font-bold">Author :</p>
+                <div>
+                  <span>{authorName}</span>
+                  <img
+                    src={authorPhoto}
+                    className="rounded-[50%] object-cover w-12 h-12"
+                    alt=""
+                  />{" "}
+                </div>
+              </p>
+              <p className="mb-3 font-normal  text-[#4c5161] text-center md:text-start lg:text-xl text-base">
                 <span className="font-bold">Summary :</span> {description}
               </p>
               <p className="mb-3 font-normal  text-gray-700 text-center md:text-start lg:text-xl text-base">
@@ -72,6 +93,15 @@ const ArticleDetails = () => {
               </p>
               <p className="mb-3 font-normal  text-[#4c5161] text-center md:text-start lg:text-xl text-base">
                 <span className="font-bold">Total Views :</span> {views}
+              </p>
+              <p className="mb-3 font-normal  text-[#4c5161] text-center md:text-start text-sm">
+                <span className="font-bold">Posted Date :</span>{" "}
+                {new Date(postedTime).toLocaleString(undefined, {
+                  year: "numeric",
+                  month: "numeric",
+                  day: "numeric",
+                  hour12: true, // Use 12-hour format
+                })}
               </p>
             </div>
           </div>
