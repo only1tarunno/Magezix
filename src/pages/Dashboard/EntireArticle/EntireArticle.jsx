@@ -28,8 +28,6 @@ const EntireArticle = () => {
     },
   });
 
-  console.log(currentPage);
-
   // pagination
   useEffect(() => {
     axiosSecure
@@ -71,7 +69,7 @@ const EntireArticle = () => {
     if (res.data.modifiedCount > 0) {
       refetch();
       Swal.fire({
-        title: "Article is premium now",
+        title: "Article has been Approved",
         icon: "success",
         showConfirmButton: false,
         timer: 1500,
