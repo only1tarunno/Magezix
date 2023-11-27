@@ -1,4 +1,4 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from "../../components/shared/Loader";
 import { useEffect, useRef, useState } from "react";
@@ -13,16 +13,25 @@ const AllArticle = () => {
   const [search, setSearch] = useState("");
   const [isSearching, setIsSearching] = useState(false);
   const [tags, setTags] = useState("");
+  const [filterPublisher, setfilterPublisher] = useState("");
   const [lottieload, setLootieLoad] = useState(false);
   const axiosPublic = useAxiosPublic();
   const [isUserPremium] = usePremium();
+
+  const { data: publishers = [], isLoading: publishersLoader } = useQuery({
+    queryKey: ["publishersForAllArticlePage"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/publisher");
+      return res.data;
+    },
+  });
 
   const { data, fetchNextPage, hasNextPage, isLoading, refetch } =
     useInfiniteQuery({
       queryKey: ["articles"],
       queryFn: async ({ pageParam = 0 }) => {
         const res = await axiosPublic.get(
-          `allArticles?limit=6&offset=${pageParam}&search=${search}&tags=${tags}`
+          `allArticles?limit=6&offset=${pageParam}&search=${search}&tags=${tags}&publisher=${filterPublisher}`
         );
 
         return { ...res.data, prevOffset: pageParam };
@@ -44,13 +53,22 @@ const AllArticle = () => {
     setIsSearching(true);
     const searchtext = e.target.search.value;
     setTags("");
+    setfilterPublisher("");
     setSearch(searchtext);
   };
 
   const handleTags = (e) => {
     setIsSearching(true);
     setSearch("");
+    setfilterPublisher("");
     setTags(e.target.value);
+  };
+
+  const handleFilterPublisher = (e) => {
+    setIsSearching(true);
+    setSearch("");
+    setTags("");
+    setfilterPublisher(e.target.value);
   };
 
   useEffect(() => {
@@ -60,7 +78,7 @@ const AllArticle = () => {
       setIsSearching(false);
       setLootieLoad(false);
     });
-  }, [search, tags, refetch]);
+  }, [search, tags, filterPublisher, refetch]);
 
   // for lottie animation
   const animation = useRef(null);
@@ -74,7 +92,7 @@ const AllArticle = () => {
     });
   }, [lottieload]);
 
-  if (isLoading) {
+  if (isLoading || publishersLoader) {
     return <Loader></Loader>;
   }
 
@@ -123,6 +141,18 @@ const AllArticle = () => {
               </div>
             </div>
           </form>
+          <div className="w-full md:max-w-xs">
+            <select
+              value={filterPublisher}
+              onChange={handleFilterPublisher}
+              className="select select-bordered Uppercase w-full md:max-w-xs focus:outline-none"
+            >
+              <option value={""}>Filter By publisher</option>
+              {publishers?.map((item) => (
+                <option key={item?._id}>{item?.name}</option>
+              ))}
+            </select>
+          </div>
         </div>
 
         {isSearching ? (
