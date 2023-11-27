@@ -8,7 +8,6 @@ import Staticstics from "./Staticstics";
 import TrendingArticle from "./TrendingArticle";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import { FaCcAmazonPay } from "react-icons/fa";
 import subs from "../../assets/subscribe.png";
 
 const Home = () => {
