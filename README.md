@@ -11,4 +11,4 @@ Different features and functionalities of my website:
 - Admin can approve,decline,delete the articles which is added by Authors
 - User can search Article by their title
 - User can filter Article by their tags
-- User can show their profile page and also able to update their information
+- User can show their profile page and also able to update their information.
