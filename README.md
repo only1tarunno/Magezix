@@ -2,7 +2,11 @@
 
 Live Link: https://newspaper-fa271.web.app
 
-Different features and functionalities of my website:
+<br>
+
+## Different features and functionalities of my website:
+
+<br>
 
 - User can add articles, update their articles, also delete their articles
 - User can take subscription to read premium articles
@@ -12,3 +16,11 @@ Different features and functionalities of my website:
 - User can search Article by their title
 - User can filter Article by their tags
 - User can show their profile page and also able to update their information.
+
+<br>
+
+## Technology I have Used:
+
+<br>
+
+- Javascript, React, React router, Axios, TanStack Query, Tailwind, Firebase, Node Js, Mongodb, Mongoose & JWT
