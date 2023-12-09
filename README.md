@@ -1,6 +1,9 @@
 # Magezix
 
 Live Link: https://newspaper-fa271.web.app
+
+<br>
+
 Server Repo: https://github.com/only1tarunno/Magezix-server
 
 <br>
